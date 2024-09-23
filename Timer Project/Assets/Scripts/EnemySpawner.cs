@@ -12,22 +12,30 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float intervalTimer = 0f;
     [SerializeField] float increaseInterval = 60f;
 
-    // [Header("Enemy Location")]
-    // GameObject enemyLocations[]; 
+    [Header("Enemy Location")]
+    [SerializeField] GameObject enemyLocation;
+
+    // called once per frame 
+    void Update()
+    {
+        SpawnEnemy();
+    }
 
     // spawns enemy object
     void SpawnEnemy()
     {
-        spawnTimer = Time.deltaTime;
-        intervalTimer = Time.deltaTime;
+        spawnTimer += Time.deltaTime;
+        intervalTimer += Time.deltaTime;
 
-        if (spawnTimer == spawnInterval)
+        if (spawnTimer >= spawnInterval)
         {
+            Debug.Log("enemy spawned");
+
             spawnTimer = 0;
-            Instantiate(enemy);
+            Instantiate(enemy, enemyLocation.transform.position, transform.rotation);
         }
 
-        if (intervalTimer == increaseInterval)
+        if (intervalTimer >= increaseInterval)
         {
             intervalTimer = 0;
             spawnInterval = 10f;

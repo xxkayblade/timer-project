@@ -50,12 +50,15 @@ public class PlayerMovement : MonoBehaviour
     // checking for enemy and projectile collision 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("oops player dead");
 
         if (collision.gameObject.tag == "enemy" || collision.gameObject.tag == "projectile")
         {
-            Destroy(this.gameObject);
+            Destroy(collision.gameObject);
+            Debug.Log("enemy dead");
         }
+
+        Debug.Log("collided with " + collision.gameObject.name);
+
     }
 
 }
