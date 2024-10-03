@@ -5,34 +5,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Acceleration")]
-    public float accel = 1f;
-    public float hAccel = 1f;
-    public float vAccel = .1f;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Player Speed")]
+    public float playerSpeed = 1f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     // FixedUpdate is called every physics update
     private void FixedUpdate()
     {
         // finds current player input
         Vector3 currentDirection = Direction();
-        currentDirection.x = hAccel;
-        currentDirection.y = vAccel;
-
         // throw into translate and multiply by acceleration
-        transform.Translate(Direction() * accel);
-
+        transform.Translate(Direction() * playerSpeed);
     }
 
     // gets input from keyboard -- WASD
@@ -47,18 +30,18 @@ public class PlayerMovement : MonoBehaviour
         return direction;
     }
 
-    // checking for enemy and projectile collision 
+    /*// checking for enemy and projectile collision 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (collision.gameObject.tag == "enemy" || collision.gameObject.tag == "projectile")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyProjectile")
         {
-            Destroy(collision.gameObject);
-            Debug.Log("enemy dead");
+            Destroy(this);
+            Debug.Log("you died!");
         }
 
         Debug.Log("collided with " + collision.gameObject.name);
+        // you died by "this" screen?
 
-    }
+    }*/
 
 }

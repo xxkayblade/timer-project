@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 5166945609947320747}
   - component: {fileID: 8602377718155354204}
   - component: {fileID: 5905394865909140753}
+  - component: {fileID: 3600920942895957617}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: enemy
@@ -253,7 +254,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -313,6 +314,20 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
+--- !u!114 &3600920942895957617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5801687042876587400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962ac697b730e104d8cfa77d578a4526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  enemySpeed: 5
 --- !u!1 &5930157907413130455
 GameObject:
   m_ObjectHideFlags: 0
