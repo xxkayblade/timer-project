@@ -8,14 +8,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Speed")]
     public float playerSpeed = 1f;
 
-
     // FixedUpdate is called every physics update
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         // finds current player input
         Vector3 currentDirection = Direction();
         // throw into translate and multiply by acceleration
-        transform.Translate(Direction() * playerSpeed);
+        transform.Translate(currentDirection * playerSpeed * Time.fixedDeltaTime);
     }
 
     // gets input from keyboard -- WASD
@@ -26,10 +25,10 @@ public class PlayerMovement : MonoBehaviour
         float vInput = Input.GetAxis("Vertical");
 
         // constructs vector based on x and y axis 
-        Vector3 direction = new Vector3 (hInput, vInput, 0);
+        Vector3 direction = new Vector3 (hInput, vInput, 0).normalized;
         return direction;
     }
-
+    
     /*// checking for enemy and projectile collision 
     public void OnCollisionEnter2D(Collision2D collision)
     {
