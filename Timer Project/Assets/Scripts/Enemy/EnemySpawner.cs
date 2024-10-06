@@ -13,7 +13,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float increaseInterval = 60f;
 
     [Header("Enemy Location")]
-    [SerializeField] GameObject enemyLocation;
+    [SerializeField] GameObject[] enemySpawners = new GameObject[5];
+    private int randomSpawner;
+    private GameObject chosenSpawner;
+
+    private void Start()
+    {
+        enemySpawners = GameObject.FindGameObjectsWithTag("EnemySpawner");
+    }
 
     // called once per frame 
     void Update()
@@ -32,7 +39,11 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("enemy spawned");
 
             spawnTimer = 0;
-            Instantiate(enemy, enemyLocation.transform.position, transform.rotation);
+
+            randomSpawner = Random.Range(0, enemySpawners.Length);
+            chosenSpawner = enemySpawners[randomSpawner];
+            
+            Instantiate(enemy, chosenSpawner.transform.position, transform.rotation);
         }
 
         if (intervalTimer >= increaseInterval)
