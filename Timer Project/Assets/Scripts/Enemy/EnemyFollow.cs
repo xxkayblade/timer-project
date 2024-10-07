@@ -9,7 +9,7 @@ public class EnemyFollow : MonoBehaviour
     PlayerMovement playerScript;
 
     [Header("Enemy Atrributes")]
-    [SerializeField] float enemySpeed;
+    public float enemySpeed;
 
     [Header("Audio")]
     public AudioSource source;

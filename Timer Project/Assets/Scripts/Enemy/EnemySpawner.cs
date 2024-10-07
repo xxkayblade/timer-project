@@ -5,17 +5,24 @@ public class EnemySpawner : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject player; 
     public GameObject enemy;
+    public EnemyFollow enemyScript;
 
     [Header("Spawn Timer")]
     [SerializeField] float spawnTimer = 0f;
     [SerializeField] float spawnInterval = 15f;
 
-    [Header("Spawn Interval Increase")]
-    [SerializeField] float intervalTimer = 0f;
-    [SerializeField] float increaseInterval = 60f;
+    [Header("Random Spawn Timer")]
+    [SerializeField] float randomSpawnTimer = 0f;
+    [SerializeField] float[] spawnIntervals = new float[3];
+    private int randomSpawnTime;
+    [SerializeField] float chosenSpawnTime = 5f;
+
+    [Header("Speed Increase")]
+    [SerializeField] float speedTimer = 0f;
+    [SerializeField] float speedInterval = 10f;
 
     [Header("Enemy Location")]
-    [SerializeField] GameObject[] enemySpawners = new GameObject[5];
+    [SerializeField] GameObject[] enemySpawners = new GameObject[8];
     private int randomSpawner;
     private GameObject chosenSpawner;
 
@@ -38,7 +45,8 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         spawnTimer += Time.deltaTime;
-        intervalTimer += Time.deltaTime;
+        randomSpawnTimer += Time.deltaTime; 
+        speedTimer += Time.deltaTime;
 
         if (spawnTimer >= spawnInterval)
         {
@@ -48,14 +56,27 @@ public class EnemySpawner : MonoBehaviour
 
             randomSpawner = Random.Range(0, enemySpawners.Length);
             chosenSpawner = enemySpawners[randomSpawner];
-            
             Instantiate(enemy, chosenSpawner.transform.position, transform.rotation);
         }
 
-        if (intervalTimer >= increaseInterval)
+        if (randomSpawnTimer >= chosenSpawnTime)
         {
-            intervalTimer = 0;
-            spawnInterval = 10f;
+            randomSpawnTimer = 0f;
+
+            randomSpawner = Random.Range(0, enemySpawners.Length);
+            chosenSpawner = enemySpawners[randomSpawner];
+            Instantiate(enemy, chosenSpawner.transform.position, transform.rotation);
+
+            randomSpawnTime = Random.Range(0, spawnIntervals.Length);
+            chosenSpawnTime = spawnIntervals[randomSpawnTime];
+        }
+
+        if (speedTimer >= speedInterval)
+        {
+            speedTimer = 0;
+
+            enemyScript = enemy.GetComponent<EnemyFollow>();
+            enemyScript.enemySpeed++;
         }
     }
 }

@@ -127,7 +127,6 @@ GameObject:
   - component: {fileID: 4713784855489828641}
   - component: {fileID: 1166020111831355997}
   - component: {fileID: 3605022252571650717}
-  - component: {fileID: 1723580805872018054}
   - component: {fileID: 7296545891493067363}
   m_Layer: 0
   m_Name: Player
@@ -232,41 +231,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &1723580805872018054
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7656457213592080943}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.49999997
 --- !u!114 &7296545891493067363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +248,8 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   shooter: {fileID: 0}
   enemiesDefeated: 0
+  source: {fileID: 0}
+  laserClip: {fileID: 0}
 --- !u!1 &8853622632095015676
 GameObject:
   m_ObjectHideFlags: 0
