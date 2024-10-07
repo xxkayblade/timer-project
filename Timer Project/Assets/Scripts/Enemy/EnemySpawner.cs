@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] GameObject player; 
     public GameObject enemy;
 
     [Header("Spawn Timer")]
@@ -17,15 +19,19 @@ public class EnemySpawner : MonoBehaviour
     private int randomSpawner;
     private GameObject chosenSpawner;
 
-    private void Start()
+    void Start()
     {
         enemySpawners = GameObject.FindGameObjectsWithTag("EnemySpawner");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // called once per frame 
     void Update()
     {
-        SpawnEnemy();
+        if (player  != null)
+        {
+            SpawnEnemy();
+        }
     }
 
     // spawns enemy object

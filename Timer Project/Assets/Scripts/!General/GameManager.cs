@@ -10,8 +10,15 @@ public class GameManager : MonoBehaviour
 {
     [Header("Game Timer")]
     [SerializeField] Slider timerBar;
-    [SerializeField] float gameTimer = 60f;
     [SerializeField] float gameOver = 0f;
+
+    [Header("Menus")]
+    public GameObject gameOverMenu;
+    public PlayerMovement playerScript;
+    public TextMeshProUGUI displayScore;
+    public int score = 0;
+
+
     // [SerializeField] float addedTime; 
 
     // void Awake?
@@ -20,31 +27,29 @@ public class GameManager : MonoBehaviour
     // when timer zero, game over screen
     // when item collected, time added to timer
 
-    private void Update()
+    void Update()
     {
-        if ((timerBar.value <= 60))
+        if (timerBar != null)
         {
-            timerBar.value -= Time.deltaTime;
-            
-            if (timerBar.value <= 0)
+            if ((timerBar.value <= 60) && (gameOverMenu.activeSelf == false))
             {
-                GameOver(); 
+                timerBar.value -= Time.deltaTime;
+
+                if (timerBar.value <= gameOver)
+                {
+                    GameOver();
+                }
             }
         }
-    }
 
-    void GameStart()
-    {
-        SceneManager.LoadScene("MainGame");
+        score = playerScript.enemiesDefeated;
+        displayScore.text = playerScript.enemiesDefeated.ToString();
     }
 
     void GameOver()
     {
         // game over screen active
+        gameOverMenu.SetActive(true);
     }
 
-    void RestartGame()
-    {
-        // reload main game scene?? 
-    }
 }
